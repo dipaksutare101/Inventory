@@ -20,10 +20,12 @@ namespace Inventory
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DAL.BuildConnString();
             DAL.FillComboDataSource("select * from PartyMaster", cmbPartyMaster, string.Empty);
         }
 
-        
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

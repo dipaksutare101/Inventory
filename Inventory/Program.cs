@@ -12,8 +12,11 @@ namespace Inventory
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+
         static void Main()
         {
+            DataAccessLayer DAL = new DataAccessLayer();
+            DAL.BuildConnString();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
