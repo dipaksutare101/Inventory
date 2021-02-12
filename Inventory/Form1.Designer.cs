@@ -29,22 +29,27 @@ namespace Inventory
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbPartyMaster = new System.Windows.Forms.ComboBox();
             this.dtpsaledate = new System.Windows.Forms.DateTimePicker();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblSaleNo = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.gridsaledetail = new System.Windows.Forms.DataGridView();
+            this.txttotalAmount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Saledetailid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Saleid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.gridsaledetail)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbPartyMaster
@@ -80,47 +85,33 @@ namespace Inventory
             this.lblSaleNo.Size = new System.Drawing.Size(0, 13);
             this.lblSaleNo.TabIndex = 4;
             // 
-            // dataGridView1
+            // gridsaledetail
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gridsaledetail.AllowUserToAddRows = false;
+            this.gridsaledetail.AllowUserToDeleteRows = false;
+            this.gridsaledetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridsaledetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Saledetailid,
+            this.Saleid,
             this.ItemName,
             this.Qty,
             this.Rate,
             this.Amount});
-            this.dataGridView1.Location = new System.Drawing.Point(173, 116);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(552, 150);
-            this.dataGridView1.TabIndex = 5;
-            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.gridsaledetail.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.gridsaledetail.Location = new System.Drawing.Point(173, 116);
+            this.gridsaledetail.Name = "gridsaledetail";
+            this.gridsaledetail.Size = new System.Drawing.Size(552, 150);
+            this.gridsaledetail.TabIndex = 5;
+            this.gridsaledetail.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            
+            this.gridsaledetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridsaledetail_KeyPress);
             // 
-            // ItemName
+            // txttotalAmount
             // 
-            this.ItemName.HeaderText = "ItemName";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.Width = 200;
-            // 
-            // Qty
-            // 
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            // 
-            // Rate
-            // 
-            this.Rate.HeaderText = "Rate";
-            this.Rate.Name = "Rate";
-            // 
-            // Amount
-            // 
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(788, 369);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
+            this.txttotalAmount.Location = new System.Drawing.Point(788, 369);
+            this.txttotalAmount.Name = "txttotalAmount";
+            this.txttotalAmount.Size = new System.Drawing.Size(100, 20);
+            this.txttotalAmount.TabIndex = 6;
             // 
             // label1
             // 
@@ -148,6 +139,7 @@ namespace Inventory
             this.btnNew.TabIndex = 9;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnView
             // 
@@ -167,6 +159,53 @@ namespace Inventory
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
+            // Saledetailid
+            // 
+            this.Saledetailid.DataPropertyName = "Saledetailid";
+            this.Saledetailid.HeaderText = "Saledetailid";
+            this.Saledetailid.Name = "Saledetailid";
+            this.Saledetailid.Visible = false;
+            // 
+            // Saleid
+            // 
+            this.Saleid.DataPropertyName = "Saleid";
+            this.Saleid.HeaderText = "Saleid";
+            this.Saleid.Name = "Saleid";
+            this.Saleid.Visible = false;
+            // 
+            // ItemName
+            // 
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "ItemName";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.Width = 200;
+            // 
+            // Qty
+            // 
+            this.Qty.DataPropertyName = "Qty";
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = null;
+            this.Qty.DefaultCellStyle = dataGridViewCellStyle10;
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            // 
+            // Rate
+            // 
+            this.Rate.DataPropertyName = "Rate";
+            dataGridViewCellStyle11.Format = "N2";
+            this.Rate.DefaultCellStyle = dataGridViewCellStyle11;
+            this.Rate.HeaderText = "Rate";
+            this.Rate.Name = "Rate";
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle12;
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,8 +216,8 @@ namespace Inventory
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txttotalAmount);
+            this.Controls.Add(this.gridsaledetail);
             this.Controls.Add(this.lblSaleNo);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.dtpsaledate);
@@ -186,7 +225,7 @@ namespace Inventory
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridsaledetail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,17 +236,19 @@ namespace Inventory
         private System.Windows.Forms.DateTimePicker dtpsaledate;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblSaleNo;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView gridsaledetail;
+        private System.Windows.Forms.TextBox txttotalAmount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Saledetailid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Saleid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
     }
 }
 
