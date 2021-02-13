@@ -29,26 +29,26 @@ namespace Inventory
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbPartyMaster = new System.Windows.Forms.ComboBox();
             this.dtpsaledate = new System.Windows.Forms.DateTimePicker();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblSaleNo = new System.Windows.Forms.Label();
             this.gridsaledetail = new System.Windows.Forms.DataGridView();
-            this.txttotalAmount = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.Saledetailid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Saleid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txttotalAmount = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridsaledetail)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,64 +100,12 @@ namespace Inventory
             this.gridsaledetail.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.gridsaledetail.Location = new System.Drawing.Point(173, 116);
             this.gridsaledetail.Name = "gridsaledetail";
+            this.gridsaledetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridsaledetail.Size = new System.Drawing.Size(552, 150);
             this.gridsaledetail.TabIndex = 5;
             this.gridsaledetail.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            
+            this.gridsaledetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridsaledetail_KeyDown);
             this.gridsaledetail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridsaledetail_KeyPress);
-            // 
-            // txttotalAmount
-            // 
-            this.txttotalAmount.Location = new System.Drawing.Point(788, 369);
-            this.txttotalAmount.Name = "txttotalAmount";
-            this.txttotalAmount.Size = new System.Drawing.Size(100, 20);
-            this.txttotalAmount.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(712, 372);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Total Amount";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(417, 372);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnNew
-            // 
-            this.btnNew.Location = new System.Drawing.Point(218, 372);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 23);
-            this.btnNew.TabIndex = 9;
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // btnView
-            // 
-            this.btnView.Location = new System.Drawing.Point(314, 372);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 23);
-            this.btnView.TabIndex = 10;
-            this.btnView.Text = "View";
-            this.btnView.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(521, 371);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 11;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // Saledetailid
             // 
@@ -183,28 +131,83 @@ namespace Inventory
             // Qty
             // 
             this.Qty.DataPropertyName = "Qty";
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.Qty.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Qty.DefaultCellStyle = dataGridViewCellStyle4;
             this.Qty.HeaderText = "Qty";
             this.Qty.Name = "Qty";
             // 
             // Rate
             // 
             this.Rate.DataPropertyName = "Rate";
-            dataGridViewCellStyle11.Format = "N2";
-            this.Rate.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Format = "N2";
+            this.Rate.DefaultCellStyle = dataGridViewCellStyle5;
             this.Rate.HeaderText = "Rate";
             this.Rate.Name = "Rate";
             // 
             // Amount
             // 
             this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle6;
             this.Amount.HeaderText = "Amount";
             this.Amount.Name = "Amount";
+            // 
+            // txttotalAmount
+            // 
+            this.txttotalAmount.Location = new System.Drawing.Point(788, 369);
+            this.txttotalAmount.Name = "txttotalAmount";
+            this.txttotalAmount.Size = new System.Drawing.Size(100, 20);
+            this.txttotalAmount.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(712, 372);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Total Amount";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(417, 372);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(218, 372);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(75, 23);
+            this.btnNew.TabIndex = 9;
+            this.btnNew.Text = "New";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnView
+            // 
+            this.btnView.Location = new System.Drawing.Point(314, 372);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 23);
+            this.btnView.TabIndex = 10;
+            this.btnView.Text = "View";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(521, 371);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

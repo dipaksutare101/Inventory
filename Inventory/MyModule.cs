@@ -14,6 +14,7 @@ namespace Inventory
         public static string DbUser { get; set; }
         public static string dbPass { get; set; }
         
+        public static string FindId { get; set; }
 
     }
 }

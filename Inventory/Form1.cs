@@ -14,6 +14,7 @@ namespace Inventory
     {
         DataAccessLayer DAL = new DataAccessLayer();
         DataSet mydataset = new DataSet();
+        int EntryId = 0;
         public Form1()
         {
             InitializeComponent();
@@ -22,6 +23,10 @@ namespace Inventory
         private void Form1_Load(object sender, EventArgs e)
         {
             btnNew_Click(null, null);
+            if( Convert.ToInt32(MyModule.FindId) > 0)
+            {
+                Filldata(Convert.ToInt32(MyModule.FindId));
+            }
         }
 
 
@@ -42,7 +47,7 @@ namespace Inventory
                 gridcells.Cells[Amount.Name].Value = Convert.ToInt32(gridcells.Cells[Qty.Name].Value) * Convert.ToInt32(gridcells.Cells[Rate.Name].Value);
 
                 Recalculate();
-                if(e.ColumnIndex==4)
+                if (e.ColumnIndex == 4)
                 {
                     Addrow();
                 }
@@ -99,7 +104,7 @@ namespace Inventory
 
         private void gridsaledetail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar.Equals(Keys.Enter) || e.KeyChar.Equals(Keys.Tab))
+            if(e.KeyChar==(char)(Keys.Enter) || e.KeyChar== (char)(Keys.Tab))
             {
                 int ColumnIndex = gridsaledetail.CurrentCell.ColumnIndex;
                 if (ColumnIndex == 5)
@@ -109,6 +114,87 @@ namespace Inventory
             }
         }
 
-       
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            int Addnew = 0;
+            if (EntryId < 1)
+            {
+                Addnew = 1;
+            }
+            string sqlstring = "SaleSave";
+            DAL.AddParameter("@AddNew", Addnew);
+            DAL.AddParameter("@Saleid", EntryId);
+            if(dtpsaledate.Text.Length > 0)
+            {
+                //DAL.AddParameter("@SaleDate", Convert.ToDateTime(dtpsaledate.Value).ToString("yyyy/MM/dd"));
+                DAL.AddParameter("@SaleDate", DBNull.Value);
+            }
+            else
+            {
+                DAL.AddParameter("@SaleDate", DBNull.Value);
+            }
+            
+
+            DAL.AddParameter("@Partyid", cmbPartyMaster.SelectedValue);
+            DAL.AddParameter("@SaleNo",5 );
+            DAL.AddParameter("@Remark", "TEST");
+            DAL.AddParameter("@TotalAmount", txttotalAmount.Text);
+            DAL.AddParameter("@Saledetail", mydataset.Tables[1]);
+            EntryId = Convert.ToInt16(DAL.ExecuteScalar(sqlstring, DAL.ParameterList));
+            if(EntryId > 0)
+            {
+                MessageBox.Show("Data Saved Successfully");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong");
+            }
+
+
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+          //  DataSet ViewDataset = new DataSet();
+          //  ViewDataset = DAL.ExecuteDataSet("ViewData 0");
+            FormView Fv = new FormView();
+            Fv.Show();
+
+            
+          
+        }
+        public void Filldata(int findid)
+        {
+            mydataset = new DataSet();
+            mydataset = DAL.ExecuteDataSet("Viewdata " + findid.ToString());
+            var viewdata = mydataset.Tables[0];
+
+            //dtpsaledate.Text = string.Format("{0:yyyy-MM-dd}",Convert.ToDateTime(viewdata.Rows[0]["Saledate"]));
+            cmbPartyMaster.SelectedValue = viewdata.Rows[0]["partyid"].ToString();
+            txttotalAmount.Text = viewdata.Rows[0]["Amount"].ToString();
+            gridsaledetail.DataSource = mydataset.Tables[1];
+            EntryId = Convert.ToInt32(viewdata.Rows[0]["Saleid"].ToString());
+
+
+        }
+        private void gridsaledetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Delete)
+            {
+                foreach(DataGridViewRow row in gridsaledetail.SelectedRows)
+                {
+                    if(gridsaledetail.Rows.Count > 0)
+                    {
+                        DialogResult dr = MessageBox.Show("Are you sure you want to delete?","Remove Row", MessageBoxButtons.YesNo);
+                        if(dr == DialogResult.Yes)
+                        {
+                            mydataset.Tables[1].Rows.RemoveAt(row.Index);
+                            mydataset.Tables[1].AcceptChanges();
+                            Recalculate();
+                        }
+                    }
+                }
+            }
+        }
     }
 }
