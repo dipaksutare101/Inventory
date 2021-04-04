@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "Inventory\Inventory.csproj", "{1E4779D3-F611-4FF5-9AB9-774909E88206}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceDAL", "Interface\InterfaceDAL.csproj", "{C01AFF01-2AD8-47BE-A05C-EDBA3078EC8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.Entity", "Inventory.Entity\Inventory.Entity.csproj", "{7B008CF1-C4B1-4883-852B-B7565383C228}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{1E4779D3-F611-4FF5-9AB9-774909E88206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E4779D3-F611-4FF5-9AB9-774909E88206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E4779D3-F611-4FF5-9AB9-774909E88206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01AFF01-2AD8-47BE-A05C-EDBA3078EC8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01AFF01-2AD8-47BE-A05C-EDBA3078EC8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01AFF01-2AD8-47BE-A05C-EDBA3078EC8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01AFF01-2AD8-47BE-A05C-EDBA3078EC8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B008CF1-C4B1-4883-852B-B7565383C228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B008CF1-C4B1-4883-852B-B7565383C228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B008CF1-C4B1-4883-852B-B7565383C228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B008CF1-C4B1-4883-852B-B7565383C228}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
