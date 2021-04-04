@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-
+using Inventory.Entity;
 namespace Inventory.DAL
 {
     public class InventoryDAL : DbContext

@@ -6,17 +6,17 @@ using System.Web;
 
 namespace Inventory.Models
 {
-    public class Registration
-    {
-        [Key]
-        public int id { get; set; }
-        [Required]
-        public string name { get; set; }
+    //public class Registration
+    //{
+    //    [Key]
+    //    public int id { get; set; }
+    //    [Required]
+    //    public string name { get; set; }
         
-        public string Gender { get; set; }
+    //    public string Gender { get; set; }
 
-        public int cityid { get; set; }
+    //    public int cityid { get; set; }
 
-        public Boolean isstudent { get; set; }
-    }
+    //    public Boolean isstudent { get; set; }
+    //}
 }

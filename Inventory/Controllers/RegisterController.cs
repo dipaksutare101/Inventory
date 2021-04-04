@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Inventory.Models;
 using Inventory.DAL;
+using Inventory.Entity;
 
 namespace Inventory.Controllers
 {
