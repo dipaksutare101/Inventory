@@ -10,9 +10,13 @@ namespace Inventory.DAL
 {
     public class EFDataContext<AnyType> : DbContext, IRepository<AnyType> where AnyType : class
     {
+        public EFDataContext() :base("name=InventoryDAL")
+        {
+
+        }
         public void Add(AnyType obj)
         {
-            throw new NotImplementedException();
+            Set<AnyType>().Add(obj);
         }
 
         public void Delete(AnyType obj)
@@ -22,7 +26,7 @@ namespace Inventory.DAL
 
         public void Save()
         {
-            throw new NotImplementedException();
+            SaveChanges();
         }
 
         public List<AnyType> Search()
@@ -35,4 +39,6 @@ namespace Inventory.DAL
             throw new NotImplementedException();
         }
     }
+
+
 }
