@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Inventory.Models
+namespace Inventory.Entity
 {
     public class Sale
     {

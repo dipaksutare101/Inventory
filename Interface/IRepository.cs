@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace InterfaceDAL
 {
-    public interface IRepository<AnyType>
+    public interface IRepository<T> where T : class
     {
-        void Add(AnyType obj);
-        void Update(AnyType obj);
-        void Delete(AnyType obj);
-        List<AnyType> Search();
-        void Save();
+        IEnumerable<T> GetAllData();
+        T SelectDataById(object id);
+        void InsertRecord(T objRecord);
+        void Update(T objRecord);
+        void DeleteRecord(object id);
+        void SaveRecord();
     }
 }

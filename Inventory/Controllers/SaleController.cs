@@ -1,5 +1,5 @@
-﻿using Inventory.DAL;
-using Inventory.Models;
+﻿using InterfaceDAL;
+using Inventory.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

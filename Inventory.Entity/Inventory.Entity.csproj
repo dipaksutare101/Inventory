@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,14 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="City.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Interface\InterfaceDAL.csproj">
-      <Project>{c01aff01-2ad8-47be-a05c-edba3078ec8d}</Project>
-      <Name>InterfaceDAL</Name>
-    </ProjectReference>
+    <Compile Include="Sale.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
