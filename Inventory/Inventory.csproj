@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvSaleController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="DAL\InventoryDAL.cs" />
@@ -217,6 +218,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Sale\Create.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\InvSale\SaleEntry.cshtml" />
+    <Content Include="Views\Sale\SaleDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

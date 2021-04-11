@@ -10,6 +10,13 @@ namespace Inventory.Controllers
 {
     public class SaleController : Controller
     {
+        private readonly MyCustomRepository<Sale> _SaleRepository;
+        private readonly MyCustomRepository<Saledetail> _SaledetailRepository;
+        public SaleController()
+        {
+            _SaleRepository = new MyCustomRepository<Sale>();
+            _SaledetailRepository = new MyCustomRepository<Saledetail>();
+        }
         // GET: Sale
         public ActionResult Index()
         {
@@ -21,17 +28,29 @@ namespace Inventory.Controllers
             return View(new Sale());
         }
 
-        public ActionResult Savesale(Sale objSale)
+        public PartialViewResult SaleDetail()
         {
-            if (ModelState.IsValid)
-            {
-                using (var db = new InventoryDAL())
+            return PartialView(new Saledetail());
+        }
+        public JsonResult Savesale(Sale objSale)
+        {
+          bool  status = true;
+            
+                //using (var db = new InventoryDAL())
+                //{
+                //    db.sales.Add(objSale);
+                //    db.SaveChanges();
+                //}
+                _SaleRepository.InsertRecord(objSale);
+                foreach(Saledetail sd in objSale.Saledetails)
                 {
-                    db.sales.Add(objSale);
-                    db.SaveChanges();
+                    _SaledetailRepository.InsertRecord(sd);
                 }
-            }
-            return View("Create", objSale);
+                _SaleRepository.SaveRecord();
+              
+
+          
+            return new JsonResult { Data = new { status = status } };
         }
     }
 }

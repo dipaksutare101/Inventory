@@ -1,57 +1,111 @@
-﻿@model Inventory.Models.Sale
+﻿@model Inventory.Entity.Sale
 @{
     ViewBag.Title = "Create";
 }
 <h2>Create Sales</h2>
-
-<script>
-    $(function () {
-        $("#Saledate").datepicker();
-    });
-</script>
+ 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 @using (Html.BeginForm("Savesale", "Sale", FormMethod.Post))
 {
-<table padding="10px;" border="1" width="100%">
-    <tr>
-        <td align="left">Customerid</td>
-        <td align="left">@Html.TextBoxFor(m => m.Customerid)</td>
-        <td>@Html.ValidationMessageFor(m => m.Customerid)</td>
-    </tr>
-    <tr>
-        <td align="left">SaleNo</td>
-        <td align="left">@Html.TextBoxFor(m => m.SaleNo)</td>
-        <td>@Html.ValidationMessageFor(m => m.SaleNo)</td>
-    </tr>
-    <tr>
-        <td align="left">Remark</td>
-        <td align="left">@Html.TextBoxFor(m => m.Remark)</td>
-        <td>@Html.ValidationMessageFor(m => m.Remark)</td>
-    </tr>
+    <table padding="10px;" border="1" width="100%">
+        <tr>
+            <td>
+                <table padding="10px;" border="1" width="100%">
+                    <tr style="display:none">
+                        <td align="left">Saleid</td>
+                        <td align="left">@Html.TextBoxFor(m => m.Saleid)</td>
+                         
+                    </tr>
+                    <tr>
+                        <td align="left">Customerid</td>
+                        <td align="left">@Html.TextBoxFor(m => m.Customerid)</td>
+                        <td>@Html.ValidationMessageFor(m => m.Customerid)</td>
+                    </tr>
+                    <tr>
+                        <td align="left">SaleNo</td>
+                        <td align="left">@Html.TextBoxFor(m => m.SaleNo)</td>
+                        <td>@Html.ValidationMessageFor(m => m.SaleNo)</td>
+                    </tr>
+                    <tr>
+                        <td align="left">Remark</td>
+                        <td align="left">@Html.TextBoxFor(m => m.Remark)</td>
+                        <td>@Html.ValidationMessageFor(m => m.Remark)</td>
+                    </tr>
 
-    <tr>
-        <td align="left">SaleDate</td>
-        <td align="left">@Html.EditorFor(m => m.Saledate, new { htmlAttributes = new { @Value = @DateTime.Now.ToShortDateString(), @class = "date", @readonly = "true" } })</td>
-        <td>@Html.ValidationMessageFor(m => m.Saledate)</td>
-    </tr>
+                    <tr>
+                        <td align="left">SaleDate</td>
+                        <td align="left">@Html.EditorFor(m => m.Saledate, new { htmlAttributes = new { @Value = @DateTime.Now.ToShortDateString(), @class = "date", @readonly = "true" } })</td>
+                        <td>@Html.ValidationMessageFor(m => m.Saledate)</td>
+                    </tr>
 
-    <tr>
-        <td align="left">Amount</td>
-        <td align="left">@Html.EditorFor(m => m.Amount)</td>
-        <td>@Html.ValidationMessageFor(m => m.Amount)</td>
-    </tr>
-   
-    
-    
-    
-    
-    
-    @*<tr>
-        <td>
-            <input type="submit" name="submit" value="Save" />
-        </td>
-    </tr>*@
-</table>
+                    <tr>
+                        <td align="left">Amount</td>
+                        <td align="left">@Html.EditorFor(m => m.Amount)</td>
+                        <td>@Html.ValidationMessageFor(m => m.Amount)</td>
+                    </tr>
+
+
+
+
+
+
+                    @*<tr>
+                            <td>
+                                <input type="submit" name="submit" value="Save" />
+                            </td>
+                        </tr>*@
+                </table>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                ItemName
+                            </th>
+                            <th>
+                                Qty
+                            </th>
+                            <th>
+                                Rate
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>
+                            <input type="text" id="txtitemName" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="txtQty" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="txtRate" value="" />
+                        </td>
+                        <td>
+                            <input type="text" id="txtAmount" value="" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td align="right"><input type="button" id="btnAddDetail" value="AddDetail" /></td>
+        </tr>
+
+
+    </table>
+    <div id="dvSaledetail" ></div>
+
+    <table>
+        <tr>
+            <td><input type="button" name="btnSave" id="btnSave" value="Save" /></td>
+        </tr>
+    </table>
 }
 
 
@@ -61,6 +115,11 @@
     @Styles.Render("~/Content/cssjqryUi")
 
     <script type="text/javascript">
+
+
+
+
+
         $(document).ready(function () {
             $('input[type=datetime]').datepicker({
                 dateFormat: "dd/mm/yy",
@@ -69,8 +128,132 @@
                 yearRange: "-60:+0"
             });
 
+            $(function () {
+                $("#Saledate").datepicker();
+            });
+
+
+            //$("#btnAddDetail").change(function () {
+            //    // function CreatePopup() {
+            //    var x = $("#dvSaledetail");
+            //    x.load("Sale/SaleDetail", function () {
+            //        x.dialog({
+            //            show: {
+            //                effect: "blind",
+            //                duration: 1000
+            //            },
+            //            hide: {
+            //                effect: "explode",
+            //                duration: 1000
+            //            },
+            //            modal: true,
+            //            width: 500,
+            //            height: 500,
+            //            title: "Add New Entry",
+            //            resizable: false
+            //        })
+            //    })
+            //    //}
+            //});
+            var Saledetails = [];
+
+            $("#btnAddDetail").click(function () {
+                //alert($("#txtitemName").val() + '' + $("#txtQty").val() + '' + $("#txtRate").val() + '' + $("#txtAmount").val() );
+
+                Saledetails.push({
+                   // saleid: $("#Saleid").val(),
+                    ItemName: $("#txtitemName").val(),
+                    Qty: $("#txtQty").val(),
+                    Rate: $("#txtRate").val(),
+                    Amount:$("#txtAmount").val()
+                });
+                if (Saledetails.length > 0) {
+                    alert(Saledetails["itemName"])
+                }
+                
+                GenerateItemTable();
+            });
+
+            function GenerateItemTable() {
+                if (Saledetails.length > 0) {
+                    var $table = $("<table id='mytable' style='width:100%'/>");
+                    $table.append("<thead><tr><th>ItemName</th><th>Qty</th><th>Rate</th><th>Amount</th></tr></thead>");
+
+                    var $tbody = $("<tbody/>");
+
+                    $.each(Saledetails, function (i, val) {
+                        var $row = $("<tr>");
+
+                        $row.append($("<td/>").html(val.ItemName));
+                        $row.append($("<td/>").html(val.Qty));
+                        $row.append($("<td/>").html(val.Rate));
+                        $row.append($("<td/>").html(val.Amount));
+                        $tbody.append($row);
+                    });
+                    $table.append($tbody);
+
+                }
+                $("#dvSaledetail").html($table);
+            }
+
+
+
+            $("#txtQty").change(function () {
+                var Qty = $("#txtQty").val();
+                var Rate = $("#txtRate").val();
+                if ($.isNumeric(Qty) && $.isNumeric(Rate))
+                {
+                    $("#txtAmount").val(Rate * Qty);
+                }
+            });
+            $("#txtRate").change(function () {
+                var Qty = $("#txtQty").val();
+                var Rate = $("#txtRate").val();
+                if ($.isNumeric(Qty) && $.isNumeric(Rate)) {
+                    $("#txtAmount").val(Rate * Qty);
+                }
+            });
+
+            $("#btnSave").on("click", function () {
+                alert("Save Called");
+
+                var data = {
+                    saleid: 1,
+                    Customerid: $("#Customerid").val(),
+                    Saledate: $("#Saledate").val(),
+                    SaleNo: $("#SaleNo").val(),
+                    Remark: $("#Remark").val(),
+                    Amount: $("#Amount"),
+                    Saledetails: Saledetails 
+                }
+
+                $.ajax({
+                    url: "Savesale",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function (d) {
+                        if (d.status == true) {
+                            alert("Data Successfully Save");
+                        }
+                        else {
+                            alert("there is error on server Side");
+                        }
+                    },
+                    error: function () {
+                        alert("there is something wrong");
+                    }
+
+
+
+                });
+
+            });
+
+
         });
     </script>
 
 }
- 
+
