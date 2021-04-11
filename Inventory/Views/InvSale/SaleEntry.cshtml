@@ -1,0 +1,87 @@
+﻿@model Inventory.Entity.Sale
+@{
+    ViewBag.Title = "Add";
+}
+<h2>Sale Entry</h2>
+
+<script>
+    $(function () {
+        $("#Saledate").datepicker();
+    });
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+@using (Html.BeginForm("Savesale", "Sale", FormMethod.Post))
+{
+    <table padding="10px;" border="1" width="100%">
+        <tr>
+            <td>
+                <table padding="10px;" border="1" width="100%">
+                    <tr>
+                        <td align="left">Customerid</td>
+                        <td align="left">@Html.TextBoxFor(m => m.Customerid)</td>
+                        <td>@Html.ValidationMessageFor(m => m.Customerid)</td>
+                    </tr>
+                    <tr>
+                        <td align="left">SaleNo</td>
+                        <td align="left">@Html.TextBoxFor(m => m.SaleNo)</td>
+                        <td>@Html.ValidationMessageFor(m => m.SaleNo)</td>
+                    </tr>
+                    <tr>
+                        <td align="left">Remark</td>
+                        <td align="left">@Html.TextBoxFor(m => m.Remark)</td>
+                        <td>@Html.ValidationMessageFor(m => m.Remark)</td>
+                    </tr>
+
+                    <tr>
+                        <td align="left">SaleDate</td>
+                        <td align="left">@Html.EditorFor(m => m.Saledate, new { htmlAttributes = new { @Value = @DateTime.Now.ToShortDateString(), @class = "date", @readonly = "true" } })</td>
+                        <td>@Html.ValidationMessageFor(m => m.Saledate)</td>
+                    </tr>
+
+                    <tr>
+                        <td align="left">Amount</td>
+                        <td align="left">@Html.EditorFor(m => m.Amount)</td>
+                        <td>@Html.ValidationMessageFor(m => m.Amount)</td>
+                    </tr>
+
+
+
+
+
+
+                    @*<tr>
+                            <td>
+                                <input type="submit" name="submit" value="Save" />
+                            </td>
+                        </tr>*@
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="right"><input type="button" name="btnAddDetail" value="AddDetail" onclick="" /></td>
+        </tr>
+    </table>
+
+
+}
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
+        });
+    </script>
+
+}
+

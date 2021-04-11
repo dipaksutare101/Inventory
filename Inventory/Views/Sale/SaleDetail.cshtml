@@ -1,0 +1,32 @@
+﻿@model Inventory.Entity.Saledetail
+
+<h2>Add New Saledetail</h2>
+<hr />
+
+ItemName : @Html.EditorFor(model => model.ItemName)
+<br />
+QTY : @Html.EditorFor(model => model.Qty)
+<br />
+
+Rate : @Html.EditorFor(model => model.Rate)
+<br />
+
+Amount : @Html.EditorFor(model => model.Amount)
+<br />
+<p>
+    <input type="button" name="btnSave" value="Save" />
+</p>
+
+<script type="text/javascript">
+    function SaveSaledetail() {
+        var Itemname = $("ItemName").val();
+        var Qty = $("Qty").val();
+        var Rate = $("Rate").val();
+        var Amount = $("Amount").val();
+
+
+
+    }
+
+</script>
+
