@@ -17,6 +17,7 @@ namespace InterfaceDAL
             this.db = new InventoryDAL();
             dbEntity = db.Set<T>();
         }
+        
 
         public MyCustomRepository(InventoryDAL _db)
         {
@@ -39,14 +40,7 @@ namespace InterfaceDAL
             dbEntity.Add(objRecord);
         }
 
-        public void InsertRange( List<T> objRecord)
-        {
-            foreach(T obj in objRecord)
-            {
-                InsertRecord(obj);
-            }
-        }
-
+        
         public void Update(T objRecord)
         {
             dbEntity.Attach(objRecord);
