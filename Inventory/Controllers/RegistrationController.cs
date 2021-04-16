@@ -38,7 +38,7 @@ namespace Inventory.Controllers
 
         public JsonResult GetCity(string Prefix)
         {
-            var data = _CityRepository.GetAllData();
+            var data = _CityRepository.GetAllData().Where(x => x.cityname.ToLower().StartsWith(Prefix.ToLower()));
              data.Select(m => new  {  m.cityname,  m.cityid });
             return Json(data, JsonRequestBehavior.AllowGet);
         }
