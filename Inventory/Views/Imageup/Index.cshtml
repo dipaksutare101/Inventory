@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Inventory.Entity.Image_Table>
+@{
+    ViewBag.Title = "Upload Image";
+    WebGrid webGrid = new WebGrid(source: Model, canSort: false, canPage: false);
+}
+
+<h2>Index</h2>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/start/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Upload Image</h2>
+        <p>
+            @using (Html.BeginForm("Uploadim", "Imageup", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                <input type="file" name="file" />
+                <input type="submit" name="btnUpload" value="Upload File" />
+
+
+            }
+
+
+            <hr />
+        </p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>List Image</h2>
+        <p>
+            @webGrid.GetHtml(
+       htmlAttributes: new { @id = "WebGrid" },
+       columns: webGrid.Columns(
+           webGrid.Column("Id", "ID"),
+           webGrid.Column("Title", "NAME"),
+           webGrid.Column("Image", "PHOTO", format:@<text><img alt="@item.Title" src="@Url.Content(item.Image)" style="width:200px; height:auto; padding:30px;" /></text>)))
+        </p>
+    </div>
+</div>
