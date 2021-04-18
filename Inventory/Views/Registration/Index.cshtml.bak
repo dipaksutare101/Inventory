@@ -1,4 +1,4 @@
-﻿@model Inventory.Entity.RegistrationViewModel
+﻿@model Inventory.Entity.Registration
 @{
     ViewBag.Title = "Index";
 }
@@ -30,9 +30,7 @@
             <td>
                 @Html.Label("City")
                 @*@Html.DropDownListFor(model => model.cityid,(IEnumerable<SelectListItem>)ViewBag.city, new { @class = "form-control" })*@
-                @Html.HiddenFor(model => model.cityid)
-                @Html.TextBoxFor(model => model.cityname, new { @class = "form-control" })
-
+                @Html.TextBoxFor(model => model.cityid, new { @class = "form-control" })
             </td>
         </tr>
         <tr>
@@ -55,13 +53,13 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $("#cityname").autocomplete({
+        $("#cityid").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: 'GetCity',
                     type: 'POST',
                     dataType: 'json',
-                    data: { Prefix: request.term},
+                    data: "{'Prefix': '" + request.term + "'}",
                     success: function (data) {
                         response($.map(data, function (item) {
                             return { label: item.cityname, value: item.cityid };

@@ -19,4 +19,20 @@ namespace Inventory.Entity
 
         public Boolean isstudent { get; set; }
     }
+
+    public class RegistrationViewModel
+    {
+        
+        public int id { get; set; }
+        [Required]
+        public string name { get; set; }
+
+        public string Gender { get; set; }
+
+        public int cityid { get; set; }
+
+        public string cityname { get; set; }
+        public Boolean isstudent { get; set; }
+    }
+
 }
