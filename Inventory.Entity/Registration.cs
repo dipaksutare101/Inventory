@@ -17,6 +17,7 @@ namespace Inventory.Entity
 
         public int cityid { get; set; }
 
+        public string cityname { get; set; }
         public Boolean isstudent { get; set; }
     }
 }

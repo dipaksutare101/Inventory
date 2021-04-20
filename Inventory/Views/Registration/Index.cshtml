@@ -30,7 +30,9 @@
             <td>
                 @Html.Label("City")
                 @*@Html.DropDownListFor(model => model.cityid,(IEnumerable<SelectListItem>)ViewBag.city, new { @class = "form-control" })*@
-                @Html.TextBoxFor(model => model.cityid, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.cityname, new { @class = "form-control" })
+                @Html.HiddenFor(model => model.cityid)
+              
             </td>
         </tr>
         <tr>
@@ -53,7 +55,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $("#cityid").autocomplete({
+        $("#cityname").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: 'GetCity',
@@ -62,7 +64,8 @@
                     data: { Prefix: request.term},
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.cityname, value: item.cityid };
+                            $("#cityid").val(item.cityid);
+                            return { label: item.cityname, value: item.cityname };
                         }))
                     },
                     error: function () {
