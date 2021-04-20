@@ -22,25 +22,24 @@ namespace Inventory.Controllers
         {
             var data = _CityRepository.GetAllData();
             ViewBag.city = data.Select(m => new SelectListItem { Text = m.cityname, Value = m.cityid.ToString() });
-            RegistrationViewModel Rvm = new RegistrationViewModel();
-            return View(Rvm);
+            return View();
         }
 
-        public ActionResult Save(RegistrationViewModel objregistration)
+        public ActionResult Save(Registration objregistration)
         {
             var data = _CityRepository.GetAllData();
             ViewBag.city = data.Select(m => new SelectListItem { Text = m.cityname, Value = m.cityid.ToString() });
 
-            //_RegistrationRepository.InsertRecord(objregistration);
-            //_RegistrationRepository.SaveRecord();
+            _RegistrationRepository.InsertRecord(objregistration);
+            _RegistrationRepository.SaveRecord();
 
             return View("Index");
         }
 
         public JsonResult GetCity(string Prefix)
         {
-            var data = _CityRepository.GetAllData().Where(x => x.cityname.ToLower().StartsWith(Prefix.ToLower()));
-            // data.Select(m => new  {  m.cityname,  m.cityid });
+            var data = _CityRepository.GetAllData();
+             data.Select(m => new  {  m.cityname,  m.cityid });
             return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
